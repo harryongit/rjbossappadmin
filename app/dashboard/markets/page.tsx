@@ -22,7 +22,6 @@ import {
   updateMarket,
   bulkUpdateOdds,
 } from "@/lib/admin";
-import { PlusIcon, TrashIcon } from "lucide-react";
 
 const STATUSES = ["upcoming", "open", "closed", "result_declared"];
 const statusColor: Record<string, any> = {
@@ -188,7 +187,7 @@ export default function MarketsPage() {
               ))}
             </Select>
             <Button onClick={openCreate} className="gap-2">
-              <PlusIcon size={16} /> Create Market
+              <span>+</span> Create Market
             </Button>
           </div>
         }
@@ -217,7 +216,7 @@ export default function MarketsPage() {
                     <td className="py-3 text-slate-500">{m.id}</td>
                     <td className="font-medium text-slate-100">{m.name}</td>
                     <td>
-                      <Badge color={m.market_type === "starline" ? "purple" : "slate"}>
+                      <Badge color={m.market_type === "starline" ? "violet" : "slate"}>
                         {m.market_type}
                       </Badge>
                     </td>
@@ -300,7 +299,7 @@ export default function MarketsPage() {
                       <Input value={sch.session_label} onChange={(e) => updateSchedule(i, "session_label", e.target.value)} placeholder="Label (e.g. 10 AM)" className="flex-1" />
                       <Input required value={sch.result_time} onChange={(e) => updateSchedule(i, "result_time", e.target.value)} placeholder="Time (HH:MM)" className="w-32" />
                       <Button variant="danger" type="button" size="sm" onClick={() => removeSchedule(i)}>
-                        <TrashIcon size={16} />
+                        Delete
                       </Button>
                     </div>
                   ))}
