@@ -15,10 +15,7 @@ export interface Market {
   name: string;
   open_time: string;
   close_time: string;
-  result_declare_time?: string | null;
-  commission: number;
   status: string;
-  odds?: string | null;
   is_active: boolean;
 }
 

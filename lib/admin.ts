@@ -126,13 +126,6 @@ export async function softDeleteMarket(marketId: number) {
   return res.data;
 }
 
-export async function cloneMarket(marketId: number, newName: string) {
-  const res = await client.post(`/admin/markets/${marketId}/clone`, null, {
-    params: { new_name: newName },
-  });
-  return res.data;
-}
-
 export async function createMarket(data: any) {
   const res = await client.post("/admin/markets", data);
   return res.data;
@@ -140,11 +133,6 @@ export async function createMarket(data: any) {
 
 export async function updateMarket(marketId: number, data: any) {
   const res = await client.put(`/admin/markets/${marketId}`, data);
-  return res.data;
-}
-
-export async function bulkUpdateOdds(marketId: number, odds: Record<string, number>) {
-  const res = await client.put(`/admin/markets/${marketId}/odds/bulk`, { odds });
   return res.data;
 }
 
