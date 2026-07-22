@@ -14,7 +14,7 @@ import {
 } from "@/components/ui";
 import { listMarkets, listResults, previewResult, bulkDeclareResults } from "@/lib/admin";
 
-const statusColor: Record<string, string> = {
+const statusColor: Record<string, any> = {
   upcoming: "slate",
   open: "green",
   closed: "amber",
