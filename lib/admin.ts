@@ -131,6 +131,11 @@ export async function updateMarket(marketId: number, data: any) {
 
 /* ---------------- Admin: Results ---------------- */
 
+export async function listResults(params: any = {}) {
+  const res = await client.get("/admin/results", { params });
+  return res.data;
+}
+
 export async function previewResult(marketId: number) {
   const res = await client.get(`/admin/results/${marketId}/preview`);
   return res.data;
