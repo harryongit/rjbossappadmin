@@ -14,25 +14,15 @@ import {
 } from "@/components/ui";
 import {
   listMarkets,
-  updateMarketStatus,
   softDeleteMarket,
   createMarket,
   updateMarket,
 } from "@/lib/admin";
 
-const STATUSES = ["upcoming", "open", "closed", "result_declared"];
-const statusColor: Record<string, any> = {
-  upcoming: "slate",
-  open: "green",
-  closed: "amber",
-  result_declared: "blue",
-};
-
 export default function MarketsPage() {
   const [markets, setMarkets] = useState<any[]>([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState<string | null>(null);
-  const [statusFilter, setStatusFilter] = useState("");
   const [edit, setEdit] = useState<any>(null);
   const [confirmDelete, setConfirmDelete] = useState<any>(null);
 
@@ -48,15 +38,13 @@ export default function MarketsPage() {
     setLoading(true);
     setError(null);
     try {
-      const params: any = {};
-      if (statusFilter) params.status = statusFilter;
-      setMarkets(await listMarkets(params));
+      setMarkets(await listMarkets({}));
     } catch (e: any) {
       setError(e?.response?.data?.detail || "Failed to load markets");
     } finally {
       setLoading(false);
     }
-  }, [statusFilter]);
+  }, []);
 
   useEffect(() => {
     load();
@@ -139,19 +127,11 @@ export default function MarketsPage() {
     <div className="space-y-6">
       <PageHeader
         title="Markets"
-        description="Manage market schedules and status"
+        description="Manage market schedules"
         actions={
-          <div className="flex gap-3">
-            <Select value={statusFilter} onChange={(e) => setStatusFilter(e.target.value)} className="w-44">
-              <option value="">All statuses</option>
-              {STATUSES.map((s) => (
-                <option key={s} value={s}>{s}</option>
-              ))}
-            </Select>
-            <Button onClick={openCreate} className="gap-2">
-              <span>+</span> Create Market
-            </Button>
-          </div>
+          <Button onClick={openCreate} className="gap-2">
+            <span>+</span> Create Market
+          </Button>
         }
       />
       <ErrorMsg msg={error} />
@@ -168,7 +148,6 @@ export default function MarketsPage() {
                   <th>Name</th>
                   <th>Type</th>
                   <th>Open / Close</th>
-                  <th>Status</th>
                   <th className="text-right">Actions</th>
                 </tr>
               </thead>
@@ -188,14 +167,8 @@ export default function MarketsPage() {
                       </div>
                     </td>
                     <td>
-                      <Badge color={statusColor[m.status] ?? "slate"}>{m.status}</Badge>
-                    </td>
-                    <td>
                       <div className="flex flex-wrap justify-end gap-1.5">
                         <Button size="sm" variant="outline" onClick={() => openEdit(m)}>Edit</Button>
-                        <Button size="sm" variant="secondary" onClick={() => updateMarketStatus(m.id, m.status === "open" ? "closed" : "open")}>
-                          {m.status === "open" ? "Close" : "Open"}
-                        </Button>
                         <Button size="sm" variant="danger" onClick={() => setConfirmDelete(m)}>Delete</Button>
                       </div>
                     </td>

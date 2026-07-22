@@ -107,13 +107,6 @@ export async function listMarkets(params: any = {}) {
   return res.data;
 }
 
-export async function updateMarketStatus(marketId: number, status: string) {
-  const res = await client.put(`/admin/markets/${marketId}/status`, null, {
-    params: { status },
-  });
-  return res.data;
-}
-
 export async function softDeleteMarket(marketId: number) {
   const res = await client.delete(`/admin/markets/${marketId}`);
   return res.data;
