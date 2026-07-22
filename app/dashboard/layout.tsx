@@ -14,10 +14,6 @@ const NAV = [
   { href: "/dashboard/deposits", label: "Deposits", icon: "➕" },
   { href: "/dashboard/bids", label: "Bids", icon: "🎲" },
   { href: "/dashboard/withdrawals", label: "Withdrawals", icon: "💸" },
-  { href: "/dashboard/game-rates", label: "Game Rates", icon: "⚙" },
-  { href: "/dashboard/vip", label: "VIP Levels", icon: "⭐" },
-  { href: "/dashboard/notices", label: "Notices", icon: "📢" },
-  { href: "/dashboard/settings", label: "Settings", icon: "🔧" },
   { href: "/dashboard/audit", label: "Audit Logs", icon: "🛡" },
 ];
 

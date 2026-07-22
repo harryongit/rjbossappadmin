@@ -18,7 +18,6 @@ import {
 import {
   listUsers,
   toggleUserActive,
-  updateUserVip,
   addUserBonus,
   resetUserPassword,
   getUserDetailed,
@@ -33,8 +32,6 @@ export default function UsersPage() {
   const [selected, setSelected] = useState<any>(null);
   const [detail, setDetail] = useState<any>(null);
 
-  const [vipUser, setVipUser] = useState<any>(null);
-  const [vipLevel, setVipLevel] = useState("0");
   const [bonusUser, setBonusUser] = useState<any>(null);
   const [bonusAmount, setBonusAmount] = useState("0");
   const [bonusDesc, setBonusDesc] = useState("Bonus credited");
@@ -77,13 +74,6 @@ export default function UsersPage() {
 
   async function handleToggle(user: any) {
     await toggleUserActive(user.id);
-    load();
-  }
-
-  async function submitVip() {
-    if (!vipUser) return;
-    await updateUserVip(vipUser.id, parseInt(vipLevel, 10));
-    setVipUser(null);
     load();
   }
 
@@ -167,7 +157,6 @@ export default function UsersPage() {
               },
               { key: "phone", header: "Phone" },
               { key: "balance", header: "Balance", render: (u) => Number(u.wallet_balance).toFixed(2) },
-              { key: "vip", header: "VIP", render: (u) => <Badge color="violet">{u.vip_level}</Badge> },
               {
                 key: "status",
                 header: "Status",
@@ -186,9 +175,6 @@ export default function UsersPage() {
                     <Button size="sm" variant="outline" onClick={() => openDetail(u)}>View</Button>
                     <Button size="sm" variant="secondary" onClick={() => handleToggle(u)}>
                       {u.is_active ? "Disable" : "Enable"}
-                    </Button>
-                    <Button size="sm" variant="secondary" onClick={() => { setVipLevel(String(u.vip_level)); setVipUser(u); }}>
-                      VIP
                     </Button>
                     <Button size="sm" variant="secondary" onClick={() => { setBonusAmount("0"); setBonusDesc("Bonus credited"); setBonusUser(u); }}>
                       Bonus
@@ -212,7 +198,6 @@ export default function UsersPage() {
               <Field label="Username" value={selected.username} />
               <Field label="Phone" value={selected.phone} />
               <Field label="Balance" value={Number(selected.wallet_balance).toFixed(2)} />
-              <Field label="VIP Level" value={selected.vip_level} />
               <Field label="Admin" value={selected.username === "admin" ? "Yes" : "No"} />
               <Field label="Active" value={selected.is_active ? "Yes" : "No"} />
             </div>
@@ -231,19 +216,6 @@ export default function UsersPage() {
             )}
           </div>
         )}
-      </Modal>
-
-      {/* VIP modal */}
-      <Modal open={!!vipUser} onClose={() => setVipUser(null)} title={`Set VIP Level — ${vipUser?.username ?? ""}`}>
-        <div className="space-y-4">
-          <Field label="VIP Level">
-            <Input type="number" value={vipLevel} onChange={(e) => setVipLevel(e.target.value)} />
-          </Field>
-          <div className="flex justify-end gap-2">
-            <Button variant="ghost" onClick={() => setVipUser(null)}>Cancel</Button>
-            <Button onClick={submitVip}>Save</Button>
-          </div>
-        </div>
       </Modal>
 
       {/* Bonus modal */}

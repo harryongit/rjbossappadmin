@@ -5,7 +5,6 @@ export interface User {
   phone: string;
   full_name?: string | null;
   wallet_balance: number;
-  vip_level: number;
   is_active: boolean;
   created_at: string;
 }
@@ -53,43 +52,6 @@ export interface Bid {
   potential_win: number;
   status: string;
   placed_at: string;
-}
-
-export interface GameRate {
-  id: number;
-  market_id?: number | null;
-  bet_type: string;
-  rate: number;
-  valid_from?: string | null;
-  valid_to?: string | null;
-}
-
-export interface VipMembership {
-  id: number;
-  level: number;
-  name: string;
-  benefits?: string | null;
-  min_deposit: number;
-}
-
-export interface SystemSetting {
-  id: number;
-  key: string;
-  value: string;
-  description?: string | null;
-  updated_at: string;
-}
-
-export interface Notice {
-  id: number;
-  user_id?: number | null;
-  title: string;
-  message: string;
-  is_read: boolean;
-  priority: string;
-  expiry_date?: string | null;
-  scheduled_at?: string | null;
-  created_at: string;
 }
 
 export interface AdminActionLog {
@@ -148,7 +110,6 @@ export interface UserDetailed {
   phone: string;
   full_name?: string | null;
   wallet_balance: number;
-  vip_level: number;
   is_active: boolean;
   created_at: string;
   total_bets: number;

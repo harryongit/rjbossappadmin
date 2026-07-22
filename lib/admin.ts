@@ -84,13 +84,6 @@ export async function toggleUserActive(userId: number) {
   return res.data;
 }
 
-export async function updateUserVip(userId: number, vipLevel: number) {
-  const res = await client.put(`/admin/users/${userId}/vip`, null, {
-    params: { vip_level: vipLevel },
-  });
-  return res.data;
-}
-
 export async function addUserBonus(userId: number, amount: number, description: string) {
   const res = await client.post(
     `/admin/users/${userId}/bonus`,
@@ -183,88 +176,6 @@ export async function processDeposit(txnId: string, action: string) {
 
 export async function listBids(params: any = {}) {
   const res = await client.get("/admin/bids", { params });
-  return res.data;
-}
-
-/* ---------------- Admin: Game Rates ---------------- */
-
-export async function listGameRates(marketId?: number) {
-  const params: any = {};
-  if (marketId) params.market_id = marketId;
-  const res = await client.get("/admin/game-rates", { params });
-  return res.data;
-}
-
-export async function createGameRate(data: any) {
-  const res = await client.post("/admin/game-rates", data);
-  return res.data;
-}
-
-export async function updateGameRate(rateId: number, data: any) {
-  const res = await client.put(`/admin/game-rates/${rateId}`, data);
-  return res.data;
-}
-
-/* ---------------- Admin: VIP ---------------- */
-
-export async function listVipLevels() {
-  const res = await client.get("/admin/vip");
-  return res.data;
-}
-
-export async function createVipLevel(data: any) {
-  const res = await client.post("/admin/vip", data);
-  return res.data;
-}
-
-export async function updateVipLevel(levelId: number, data: any) {
-  const res = await client.put(`/admin/vip/${levelId}`, data);
-  return res.data;
-}
-
-export async function deleteVipLevel(levelId: number) {
-  const res = await client.delete(`/admin/vip/${levelId}`);
-  return res.data;
-}
-
-/* ---------------- Admin: Commission ---------------- */
-
-export async function getCommission() {
-  const res = await client.get("/admin/commission");
-  return res.data;
-}
-
-export async function updateGlobalCommission(commission: number) {
-  const res = await client.put("/admin/commission", { commission });
-  return res.data;
-}
-
-/* ---------------- Admin: Settings ---------------- */
-
-export async function getSettings() {
-  const res = await client.get("/admin/settings");
-  return res.data;
-}
-
-export async function updateSetting(key: string, value: string, description?: string) {
-  const res = await client.put("/admin/settings", { key, value, description });
-  return res.data;
-}
-
-/* ---------------- Admin: Notices ---------------- */
-
-export async function listNotices(params: any = {}) {
-  const res = await client.get("/admin/notices", { params });
-  return res.data;
-}
-
-export async function createNotice(data: any) {
-  const res = await client.post("/admin/notices", data);
-  return res.data;
-}
-
-export async function updateNotice(noticeId: number, data: any) {
-  const res = await client.put(`/admin/notices/${noticeId}`, data);
   return res.data;
 }
 
