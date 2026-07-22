@@ -84,8 +84,8 @@ export default function DashboardLayout({
       {/* Desktop sidebar */}
       <aside className="hidden w-64 shrink-0 flex-col border-r border-white/5 bg-ink-900/70 lg:flex">
         <div className="flex items-center gap-2 px-5 py-5">
-          <div className="flex h-9 w-9 items-center justify-center rounded-xl bg-brand-600 text-lg font-bold text-white shadow-glow">
-            S
+          <div className="flex h-10 w-10 shrink-0 items-center justify-center overflow-hidden rounded-xl shadow-glow ring-1 ring-brand-500/20">
+            <img src="/logo.jpg" alt="SattaAdmin Logo" className="h-full w-full object-cover" />
           </div>
           <span className="text-lg font-bold tracking-tight text-slate-100">
             Satta<span className="text-brand-400">Admin</span>
@@ -120,8 +120,8 @@ export default function DashboardLayout({
         >
           <div className="flex items-center justify-between px-5 py-5">
             <div className="flex items-center gap-2">
-              <div className="flex h-9 w-9 items-center justify-center rounded-xl bg-brand-600 text-lg font-bold text-white shadow-glow">
-                S
+              <div className="flex h-10 w-10 shrink-0 items-center justify-center overflow-hidden rounded-xl shadow-glow ring-1 ring-brand-500/20">
+                <img src="/logo.jpg" alt="SattaAdmin Logo" className="h-full w-full object-cover" />
               </div>
               <span className="text-lg font-bold tracking-tight text-slate-100">
                 Satta<span className="text-brand-400">Admin</span>
@@ -162,8 +162,8 @@ export default function DashboardLayout({
                 <path d="M3 6h18M3 12h18M3 18h18" strokeLinecap="round" />
               </svg>
             </button>
-            <div className="flex h-8 w-8 items-center justify-center rounded-lg bg-brand-600 text-sm font-bold text-white lg:hidden">
-              S
+            <div className="flex h-9 w-9 items-center justify-center overflow-hidden rounded-lg lg:hidden shadow-sm ring-1 ring-brand-500/20">
+              <img src="/logo.jpg" alt="SattaAdmin Logo" className="h-full w-full object-cover" />
             </div>
             <h1 className="text-sm font-semibold text-slate-200">
               {NAV.find((n) =>

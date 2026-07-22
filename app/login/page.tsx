@@ -37,8 +37,8 @@ export default function LoginPage() {
       <div className="absolute inset-0 -z-10 bg-[radial-gradient(600px_300px_at_50%_-10%,rgba(225,29,72,0.12),transparent)]" />
       <div className="w-full max-w-md">
         <div className="mb-7 flex flex-col items-center text-center">
-          <div className="mb-4 flex h-14 w-14 items-center justify-center rounded-2xl bg-brand-600 text-2xl font-bold text-white shadow-glow">
-            S
+          <div className="mb-4 flex h-20 w-20 items-center justify-center overflow-hidden rounded-3xl shadow-glow ring-2 ring-brand-500/20">
+            <img src="/logo.jpg" alt="SattaAdmin Logo" className="h-full w-full object-cover" />
           </div>
           <h1 className="text-2xl font-bold tracking-tight text-slate-50">
             Satta<span className="text-brand-400">Admin</span>
